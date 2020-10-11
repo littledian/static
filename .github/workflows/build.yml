@@ -13,7 +13,7 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
       - uses: actions/checkout@v2
       - name: Build container
-      - run: |
+        run: |
           docker build . --file Dockerfile --tag registry.cn-hongkong.aliyuncs.com/littledian/static:latest \
           && docker tag registry.cn-hongkong.aliyuncs.com/littledian/static:latest registry.cn-hongkong.aliyuncs.com/littledian/static:${{ steps.date.outputs.date }} \
           && docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }} registry.cn-hongkong.aliyuncs.com \
